@@ -1,26 +1,57 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <form-control
+    v-for="control in controls"
+    :key="control.id"
+    :control="control"
+  ></form-control>
+  <button @click="changeValue">Change value</button>
+  <button @click="initValidation">init validation</button>
+  <button @click="initFocus">init focus</button>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import FormControl from './components/FormControl.vue';
 
 export default {
   name: 'App',
+  computed: {
+    controls() {
+      return this.$store.getters.controls;
+    },
+  },
+  methods: {
+    changeValue() {
+      this.$store.dispatch('changeControlValue', {
+        control: this.$store.state.controls[0],
+        value: 'новое значение',
+      });
+    },
+    initValidation() {
+      this.$store.dispatch('validateControl', {
+        control: this.$store.state.controls[0],
+      });
+    },
+    initFocus() {
+      this.$store.dispatch('focusControl', {
+        control: this.$store.state.controls[0],
+      });
+    },
+  },
   components: {
-    HelloWorld
-  }
-}
+    FormControl,
+  },
+};
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  font-family: 'Open Sans', sans-serif;
+  width: 1000px;
+  margin: 0 auto;
+  padding: 50px;
+}
+#app a {
+  text-decoration: none;
+  color: cornflowerblue;
 }
 </style>
