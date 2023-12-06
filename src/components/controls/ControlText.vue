@@ -1,42 +1,37 @@
 <template>
-  <div class="form-control-grid">
+  <div
+    :class="{
+      'twpx-form-control': true,
+      'twpx-form-control--active': active,
+      'twpx-form-control--invalid': invalid,
+      'twpx-form-control--disabled': disabled,
+    }"
+  >
+    <img
+      :src="disabled"
+      class="twpx-form-control__disabled-icon"
+      v-if="disabled"
+    />
+    <div class="twpx-form-control__label">{{ control.label }}</div>
+    <input
+      type="text"
+      :id="controlId"
+      :name="controlName"
+      v-model="value"
+      @focus="focus"
+      @blur="blur"
+      :disabled="disabled"
+      ref="input"
+      autocomplete="off"
+      :placeholder="placeholder"
+      class="twpx-form-control__input"
+    />
     <div
-      :class="{
-        'form-control': true,
-        'form-control--active': active,
-        'form-control--invalid': invalid,
-        'form-control--disabled': disabled,
-      }"
-    >
-      <img
-        :src="disabled"
-        class="form-control__disabled-icon"
-        v-if="disabled"
-      />
-      <div class="form-control__label">{{ control.label }}</div>
-      <input
-        type="text"
-        :id="controlId"
-        :name="controlName"
-        v-model="value"
-        @focus="focus"
-        @blur="blur"
-        :disabled="disabled"
-        ref="input"
-        autocomplete="off"
-        :placeholder="placeholder"
-        class="form-control__input"
-      />
-      <div class="form-control__hint" v-html="hint" v-if="hint"></div>
-    </div>
-    <div class="form-control-link" v-if="control.hint_external">
-      <span
-        >Нажмите, чтобы подставить значение: &nbsp;
-        <a href="#" @click.prevent="clickLink">{{
-          control.hint_external
-        }}</a></span
-      >
-    </div>
+      class="twpx-form-control__warning"
+      v-html="warning"
+      v-if="warning"
+    ></div>
+    <div class="twpx-form-control__hint" v-html="hint" v-if="hint"></div>
   </div>
 </template>
 
@@ -44,21 +39,17 @@
 export default {
   data() {
     return {
+      controlId: this.id || this.control.id || null,
+      controlName: this.name || this.control.name || null,
       focused: false,
       blured: false,
-      disabled: this.control.disabled,
-      hint: '',
+      warning: '',
+      hint: this.control.hint_external,
     };
   },
   props: ['control', 'id', 'name'],
   emits: ['input'],
   computed: {
-    controlId() {
-      return this.id || this.control.id || null;
-    },
-    controlName() {
-      return this.name || this.control.name || null;
-    },
     value: {
       get() {
         return this.control.value;
@@ -79,6 +70,9 @@ export default {
     },
     invalid() {
       return this.blured && !this.validate();
+    },
+    disabled() {
+      return this.control.disabled;
     },
     validateWatcher() {
       return this.control.validateWatcher;
@@ -114,9 +108,9 @@ export default {
             RegExp(this.control.regexp)
           );
           if (!match) {
-            this.hint = this.control.regexp_description;
+            this.warning = this.control.regexp_description;
           } else {
-            this.hint = '';
+            this.warning = '';
           }
           return match;
         } else {
@@ -127,39 +121,23 @@ export default {
       }
       return true;
     },
-    clickLink() {
-      this.value = this.control.hint_external;
-    },
   },
 };
 </script>
 
 <style>
-.form-control-grid {
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-}
-.form-control-link {
-  display: flex;
-  align-items: center;
-  font-size: 10pt;
-  margin-left: 30px;
-  width: 250px;
-  flex-shrink: 0;
-}
-.form-control {
+.twpx-form-control {
   position: relative;
   margin-bottom: var(--slr2-gap-middle);
   width: 100%;
 }
-.form-control--active .form-control__label {
+.twpx-form-control--active .twpx-form-control__label {
   -webkit-transform: translateY(5px);
   transform: translateY(5px);
   font-size: 9px;
   color: #848c95;
 }
-.form-control__disabled-icon {
+.twpx-form-control__disabled-icon {
   position: absolute;
   top: 16px;
   right: 16px;
@@ -168,7 +146,7 @@ export default {
   pointer-events: none;
   z-index: 10;
 }
-.form-control__label {
+.twpx-form-control__label {
   position: absolute;
   top: 0;
   left: 14px;
@@ -184,14 +162,14 @@ export default {
   pointer-events: none;
   line-height: 1.1;
 }
-.form-control--invalid .form-control__label {
+.twpx-form-control--invalid .twpx-form-control__label {
   color: #ff0000;
 }
-.form-control--disabled .form-control__label {
+.twpx-form-control--disabled .twpx-form-control__label {
   color: #2d3142;
   opacity: 0.3;
 }
-.form-control__input {
+.twpx-form-control__input {
   display: block !important;
   width: 100%;
   margin: 0 !important;
@@ -210,24 +188,30 @@ export default {
   box-shadow: none !important;
   box-sizing: border-box;
 }
-.form-control__input:focus,
-.form-control__input:hover {
+.twpx-form-control__input:focus,
+.twpx-form-control__input:hover {
   outline: none;
   border-color: #2d3142 !important;
 }
-.form-control--invalid .form-control__input {
+.twpx-form-control--invalid .twpx-form-control__input {
   background-color: #fff5f5;
   border-color: #e38080 !important;
   outline: none;
   color: #ff0000;
 }
-.form-control--disabled .form-control__input {
+.twpx-form-control--disabled .twpx-form-control__input {
   color: #00000055;
   pointer-events: none;
   background-color: #f5f7f855;
   border: 1px solid #f5f7f855 !important;
 }
-.form-control__hint {
+.twpx-form-control__warning,
+.twpx-form-control__hint {
   font-size: 9pt;
+  margin: 5px;
+  line-height: 1.1;
+}
+.twpx-form-control__warning {
+  color: #ff0000;
 }
 </style>

@@ -7,6 +7,7 @@
   <button @click="changeValue">Change value</button>
   <button @click="initValidation">init validation</button>
   <button @click="initFocus">init focus</button>
+  <button @click="setDisabled">set disabled</button>
 </template>
 
 <script>
@@ -34,6 +35,12 @@ export default {
     initFocus() {
       this.$store.dispatch('focusControl', {
         control: this.$store.state.controls[0],
+      });
+    },
+    setDisabled() {
+      this.$store.dispatch('disableControl', {
+        control: this.$store.state.controls[0],
+        value: true,
       });
     },
   },
