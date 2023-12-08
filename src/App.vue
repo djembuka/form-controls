@@ -61,4 +61,8 @@ export default {
   text-decoration: none;
   color: cornflowerblue;
 }
+#app hr {
+  margin: 20px;
+  border: none;
+}
 </style>

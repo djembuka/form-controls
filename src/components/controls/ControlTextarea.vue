@@ -13,19 +13,19 @@
       v-if="disabled"
     />
     <div class="twpx-form-control__label">{{ control.label }}</div>
-    <input
-      type="text"
-      :id="controlId"
-      :name="controlName"
-      v-model="value"
-      @focus="focus"
-      @blur="blur"
-      :disabled="disabled"
-      ref="input"
-      autocomplete="off"
-      :placeholder="placeholder"
-      class="twpx-form-control__input"
-    />
+    <div class="twpx-form-control__textarea">
+      <textarea
+        :id="controlId"
+        :name="controlName"
+        v-model="value"
+        @focus="focus"
+        @blur="blur"
+        :disabled="disabled"
+        ref="textarea"
+        contenteditable="true"
+        class="twpx-form-control__textarea-content"
+      ></textarea>
+    </div>
     <div
       class="twpx-form-control__warning"
       v-html="warning"
@@ -169,36 +169,61 @@ export default {
   color: #2d3142;
   opacity: 0.3;
 }
-.twpx-form-control__input {
+.twpx-form-control__textarea {
   display: block !important;
   width: 100%;
   margin: 0 !important;
-  padding: 0 14px !important;
+  padding: 14px !important;
   background-color: #f5f7f8;
   border: 1px solid #f5f7f8 !important;
-  height: 48px !important;
-  line-height: 48px;
   border-radius: 3px !important;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px !important;
   -webkit-transition: border-color 0.3s ease;
   transition: border-color 0.3s ease;
-  outline: none !important;
   box-shadow: none !important;
   box-sizing: border-box;
 }
-.twpx-form-control__input:focus,
-.twpx-form-control__input:hover {
+.twpx-form-control__textarea:focus,
+.twpx-form-control__textarea:hover {
   outline: none;
   border-color: #2d3142 !important;
 }
-.twpx-form-control--invalid .twpx-form-control__input {
+.twpx-form-control__textarea-content {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+  height: 96px;
+  outline: none !important;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px !important;
+  overflow: auto;
+  scrollbar-color: #ccc #fff;
+  scrollbar-width: thin;
+}
+.twpx-form-control__textarea-content::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background-color: #fff;
+}
+.twpx-form-control__textarea-content::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 2px;
+}
+.twpx-form-control__textarea-content::-webkit-scrollbar-thumb:hover {
+  background-color: #c0c0c0;
+}
+.twpx-form-control__textarea-content:focus,
+.twpx-form-control__textarea-content:hover {
+  outline: none;
+}
+.twpx-form-control--invalid .twpx-form-control__textarea {
   background-color: #fff5f5;
   border-color: #e38080 !important;
   outline: none;
   color: #ff0000;
 }
-.twpx-form-control--disabled .twpx-form-control__input {
+.twpx-form-control--disabled .twpx-form-control__textarea {
   color: #00000055;
   pointer-events: none;
   background-color: #f5f7f855;

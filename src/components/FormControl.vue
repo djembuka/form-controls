@@ -1,14 +1,18 @@
 <template>
-  <control-text
+  <component
+    :is="`control-${control.type}`"
     :control="control"
     :id="id"
     :name="name"
     @input="input"
-  ></control-text>
+  ></component>
+  <hr />
 </template>
 
 <script>
 import ControlText from './controls/ControlText.vue';
+import ControlTextarea from './controls/ControlTextarea.vue';
+import ControlTextareaFormat from './controls/ControlTextareaFormat.vue';
 
 export default {
   data() {
@@ -20,6 +24,7 @@ export default {
   props: ['control'],
   methods: {
     input(value) {
+      console.log('sdf');
       this.$store.dispatch('changeControlValue', {
         control: this.control,
         value,
@@ -28,6 +33,8 @@ export default {
   },
   components: {
     ControlText,
+    ControlTextarea,
+    ControlTextareaFormat,
   },
 };
 </script>
