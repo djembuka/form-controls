@@ -3,6 +3,7 @@
     :class="{
       'twpx-form-control': true,
       'twpx-form-control--active': active,
+      'twpx-form-control--focused': focused,
       'twpx-form-control--invalid': invalid,
       'twpx-form-control--disabled': disabled,
     }"
@@ -55,7 +56,7 @@ export default {
         return this.control.value;
       },
       set(value) {
-        this.$emit('input', value);
+        this.$emit('input', { value });
       },
     },
     placeholder() {
@@ -182,7 +183,7 @@ export default {
   box-shadow: none !important;
   box-sizing: border-box;
 }
-.twpx-form-control__textarea:focus,
+.twpx-form-control--focused .twpx-form-control__textarea,
 .twpx-form-control__textarea:hover {
   outline: none;
   border-color: #2d3142 !important;
@@ -200,6 +201,7 @@ export default {
   overflow: auto;
   scrollbar-color: #ccc #fff;
   scrollbar-width: thin;
+  resize: none;
 }
 .twpx-form-control__textarea-content::-webkit-scrollbar {
   width: 4px;

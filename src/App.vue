@@ -23,8 +23,9 @@ export default {
   methods: {
     changeValue() {
       this.$store.dispatch('changeControlValue', {
-        control: this.$store.state.controls[0],
-        value: 'новое значение',
+        control: this.$store.state.controls[3],
+        value: '324234328',
+        checked: true,
       });
     },
     initValidation() {
@@ -39,7 +40,7 @@ export default {
     },
     setDisabled() {
       this.$store.dispatch('disableControl', {
-        control: this.$store.state.controls[0],
+        control: this.$store.state.controls[3],
         value: true,
       });
     },

@@ -3,6 +3,7 @@
     :class="{
       'twpx-form-control': true,
       'twpx-form-control--active': active,
+      'twpx-form-control--focused': focused,
       'twpx-form-control--invalid': invalid,
       'twpx-form-control--disabled': disabled,
     }"
@@ -20,7 +21,6 @@
         v-html="value"
         @focus="focus"
         @blur="blur"
-        @keyup="change"
         :disabled="disabled"
         ref="textarea"
         contenteditable="true"
@@ -56,7 +56,7 @@ export default {
         return this.control.value;
       },
       set(value) {
-        this.$emit('input', value);
+        this.$emit('input', { value });
       },
     },
     placeholder() {
@@ -98,6 +98,7 @@ export default {
     blur() {
       this.focused = false;
       this.blured = true;
+      this.change();
     },
     change() {
       this.value = this.$refs.textarea.innerHTML;
@@ -186,7 +187,7 @@ export default {
   box-shadow: none !important;
   box-sizing: border-box;
 }
-.twpx-form-control__textarea:focus,
+.twpx-form-control--focused .twpx-form-control__textarea,
 .twpx-form-control__textarea:hover {
   outline: none;
   border-color: #2d3142 !important;

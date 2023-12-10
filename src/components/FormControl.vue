@@ -13,6 +13,8 @@
 import ControlText from './controls/ControlText.vue';
 import ControlTextarea from './controls/ControlTextarea.vue';
 import ControlTextareaFormat from './controls/ControlTextareaFormat.vue';
+import ControlMultiselect from './controls/ControlMultiselect.vue';
+import ControlRadio from './controls/ControlRadio.vue';
 
 export default {
   data() {
@@ -23,11 +25,11 @@ export default {
   },
   props: ['control'],
   methods: {
-    input(value) {
-      console.log('sdf');
+    input({ value, checked }) {
       this.$store.dispatch('changeControlValue', {
         control: this.control,
         value,
+        checked,
       });
     },
   },
@@ -35,6 +37,8 @@ export default {
     ControlText,
     ControlTextarea,
     ControlTextareaFormat,
+    ControlMultiselect,
+    ControlRadio,
   },
 };
 </script>

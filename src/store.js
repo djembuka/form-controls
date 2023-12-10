@@ -42,6 +42,84 @@ export default createStore({
           hint_external: 'Подробно опишите задание',
           // dependency: 'id2',
         },
+        {
+          type: 'multiselect',
+          id: 'id4',
+          name: 'POINTS',
+          label: 'Пункты для выбора',
+          options: [
+            {
+              label: 'Машиностроение',
+              code: '23423423423',
+            },
+            {
+              label: 'Сельское хозяйство',
+              code: '324234324',
+            },
+            {
+              label: 'Пункт 2',
+              code: '324234325',
+            },
+            {
+              label: 'Пункт 2',
+              code: '324234326',
+            },
+            {
+              label: 'Пункт 2',
+              code: '324234327',
+            },
+            {
+              label: 'Длинный пункт меню',
+              code: '324234328',
+            },
+            {
+              label: 'Сельское хозяйство',
+              code: '324234329',
+            },
+            {
+              label: 'Длинный пункт меню',
+              code: '3242343210',
+            },
+            {
+              label: 'Пункт 2',
+              code: '3242343211',
+            },
+            {
+              label: 'Пункт 2',
+              code: '3242343212',
+            },
+          ],
+          value: ['23423423423'],
+          required: true,
+          disabled: false,
+          hint_external: 'Выберите несколько пунктов из списка',
+          // dependency: 'id2',
+        },
+        {
+          type: 'radio',
+          id: 'id5',
+          name: 'ACTIVITY_TYPES',
+          label: 'Radio кнопки',
+          options: [
+            {
+              label: 'Машиностроение',
+              code: '23423423423',
+            },
+            {
+              label: 'Сельское хозяйство',
+              code: '324234324',
+            },
+            {
+              label:
+                'Очень длинный пункт меню, который можно добавить к радио кнопке с переносом строки',
+              code: '324234325',
+            },
+          ],
+          value: '23423423423',
+          hint_external:
+            'Введите подсказку для этого блока, которая может быть очень длинная, но мы не будем ее выводить всегда, иногда подсказки не будет совсем.',
+          //   dependency: 'id2',
+        },
       ],
     };
   },
@@ -54,6 +132,17 @@ export default createStore({
     changeTextControlValue(_, { control, value }) {
       control.value = value;
     },
+    changeMultiselectValue(_, { control, value, checked }) {
+      if (value === undefined || checked === undefined) return;
+      if (checked === false) {
+        const index = control.value.indexOf(value);
+        if (index >= 0) {
+          control.value.splice(index, 1);
+        }
+      } else {
+        control.value.push(value);
+      }
+    },
     validateControl(_, control) {
       control.validateWatcher = !control.validateWatcher;
     },
@@ -65,11 +154,15 @@ export default createStore({
     },
   },
   actions: {
-    changeControlValue({ commit }, { control, value }) {
+    changeControlValue({ commit }, { control, value, checked }) {
       switch (control.type) {
         case 'text':
         case 'textarea':
+        case 'textarea-format':
           commit('changeTextControlValue', { control, value });
+          break;
+        case 'multiselect':
+          commit('changeMultiselectValue', { control, value, checked });
           break;
       }
     },
