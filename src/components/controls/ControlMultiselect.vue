@@ -2,9 +2,11 @@
   <div
     :class="{
       'twpx-form-control': true,
+      'twpx-form-control--invalid': invalid,
       'twpx-form-control--disabled': disabled,
     }"
   >
+    <div class="twpx-form-control__title">{{ control.label }}</div>
     <div class="twpx-form-control__multiselect">
       <div
         class="twpx-form-control__multiselect-item"
@@ -30,13 +32,28 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      controlId: this.id || this.control.id || null,
+      controlName: this.name || this.control.name || null,
+      blured: false,
+    };
   },
-  props: ['control'],
+  props: ['control', 'id', 'name'],
   emits: ['input'],
   computed: {
+    invalid() {
+      return this.blured && !this.validate();
+    },
     disabled() {
       return this.control.disabled;
+    },
+    validateWatcher() {
+      return this.control.validateWatcher;
+    },
+  },
+  watch: {
+    validateWatcher() {
+      this.blured = true;
     },
   },
   methods: {
@@ -44,11 +61,21 @@ export default {
       return this.control.value.find((v) => v === item.code);
     },
     click(item) {
+      this.blured = true;
       let checked = false;
       if (this.isChecked(item)) {
         checked = true;
       }
       this.$emit('input', { value: item.code, checked: !checked });
+    },
+    validate() {
+      if (
+        !this.control.required ||
+        (this.control.required && this.control.value.length)
+      ) {
+        return true;
+      }
+      return false;
     },
   },
 };
@@ -58,6 +85,11 @@ export default {
 .twpx-form-control {
   position: relative;
   margin-bottom: var(--slr2-gap-middle);
+}
+.twpx-form-control__title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 16px;
 }
 .twpx-form-control-hint {
   color: #2d3142;
@@ -94,5 +126,9 @@ export default {
 .twpx-form-control--disabled {
   pointer-events: none;
   opacity: 0.7;
+}
+.twpx-form-control--invalid .twpx-form-control__multiselect-item {
+  background-color: #ffeeef;
+  color: #ff2322;
 }
 </style>

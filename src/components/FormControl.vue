@@ -1,6 +1,6 @@
 <template>
   <component
-    :is="`control-${control.type}`"
+    :is="`control-${componentType}`"
     :control="control"
     :id="id"
     :name="name"
@@ -14,13 +14,17 @@ import ControlText from './controls/ControlText.vue';
 import ControlTextarea from './controls/ControlTextarea.vue';
 import ControlTextareaFormat from './controls/ControlTextareaFormat.vue';
 import ControlMultiselect from './controls/ControlMultiselect.vue';
-import ControlRadio from './controls/ControlRadio.vue';
+import ControlSelectRadio from './controls/ControlSelectRadio.vue';
+import ControlCheckboxCheckbox from './controls/ControlCheckboxCheckbox.vue';
 
 export default {
   data() {
     return {
       id: `PROPERTY_${this.control.id}`,
       name: `PROPERTY_${this.control.id}`,
+      componentType: `${this.control.property}${
+        this.control.type ? '-' + this.control.type : ''
+      }`,
     };
   },
   props: ['control'],
@@ -38,7 +42,8 @@ export default {
     ControlTextarea,
     ControlTextareaFormat,
     ControlMultiselect,
-    ControlRadio,
+    ControlSelectRadio,
+    ControlCheckboxCheckbox,
   },
 };
 </script>
