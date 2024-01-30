@@ -43,8 +43,7 @@ export default {
         return '';
       },
       set(checked) {
-        console.log(checked);
-        this.$emit('input', { checked });
+        this.$emit('input', checked);
       },
     },
     invalid() {
