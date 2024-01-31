@@ -6,7 +6,6 @@
       'twpx-form-control--disabled': disabled,
     }"
   >
-    {{ control.checked }}
     <div>
       <label class="twpx-form-controls__checkbox">
         <input
@@ -33,7 +32,6 @@ export default {
       focused: false,
       blured: false,
       hint: this.control.hint_external,
-      //che: false,
     };
   },
   props: ['control', 'id', 'name'],
@@ -41,7 +39,7 @@ export default {
   computed: {
     checked: {
       get() {
-        return '';
+        return this.control.checked;
       },
       set(checked) {
         this.$emit('input', checked);
@@ -83,7 +81,7 @@ export default {
 /*Checkbox*/
 .twpx-form-controls__checkbox {
   display: block;
-  margin-bottom: 16px;
+  margin-bottom: var(--slr2-gap-middle);
 }
 .twpx-form-controls__checkbox [type='checkbox']:not(:checked),
 .twpx-form-controls__checkbox [type='checkbox']:checked {
