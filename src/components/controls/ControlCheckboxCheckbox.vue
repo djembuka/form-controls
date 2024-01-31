@@ -37,6 +37,7 @@ export default {
     };
   },
   props: ['control', 'id', 'name'],
+  emits: ['input'],
   computed: {
     checked: {
       get() {
