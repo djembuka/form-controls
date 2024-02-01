@@ -2,8 +2,6 @@
   <div
     :class="{
       'twpx-form-control': true,
-      'twpx-form-control--active': active,
-      'twpx-form-control--focused': focused,
       'twpx-form-control--invalid': invalid,
       'twpx-form-control--disabled': disabled,
     }"
@@ -18,7 +16,7 @@
         name="group1"
         type="radio"
         :value="option.code"
-        :checked="checked"
+        v-model="checked"
       />
       <span>{{ option.label || '' }}</span>
     </label>
@@ -32,8 +30,6 @@ export default {
     return {
       controlId: this.id || this.control.id || null,
       controlName: this.name || this.control.name || null,
-      focused: false,
-      blured: false,
       hint: this.control.hint_external,
     };
   },
@@ -42,14 +38,14 @@ export default {
   computed: {
     checked: {
       get() {
-        return this.control;
+        return this.control.value;
       },
-      set(checked) {
-        this.$emit('input', checked);
+      set(value) {
+        this.$emit('input', { value });
       },
     },
     invalid() {
-      return this.blured && !this.validate();
+      return !this.validate();
     },
     disabled() {
       return this.control.disabled;
@@ -59,7 +55,7 @@ export default {
     validate() {
       if (
         !this.control.required ||
-        (this.control.required && this.control.checked)
+        (this.control.required && this.control.value)
       ) {
         return true;
       }
@@ -83,6 +79,7 @@ export default {
 
 /*Radio*/
 .twpx-form-control__radio {
+  display: block;
   margin-bottom: var(--slr2-gap-middle);
 }
 .twpx-form-control__radio [type='radio']:not(:checked),
@@ -97,9 +94,11 @@ export default {
   position: relative;
   padding-left: 40px;
   cursor: pointer;
-  display: block;
-  height: 24px;
-  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  line-height: var(--slr2-font-size-sm);
+  font-size: var(--slr2-font-size-sm);
   -webkit-transition: 0.28s ease;
   transition: 0.28s ease;
   -webkit-user-select: none;

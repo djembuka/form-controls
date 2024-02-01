@@ -97,8 +97,8 @@ export default {
   display: inline-flex;
   align-items: center;
   min-height: 24px;
-  line-height: 16px;
-  font-size: 14px;
+  line-height: var(--slr2-font-size-sm);
+  font-size: var(--slr2-font-size-sm);
   -webkit-user-select: none;
   user-select: none;
 }

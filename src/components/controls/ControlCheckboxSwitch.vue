@@ -1,0 +1,122 @@
+<template>
+  <div
+    class="twpx-form-control"
+    :class="{
+      'twpx-form-control--invalid': invalid,
+      'twpx-form-control--disabled': disabled,
+    }"
+  >
+    <label>
+      <span
+        class="twpx-form-control__switch"
+        :class="{ 'twpx-form-control__switch--off': !checked }"
+      >
+        <input
+          type="checkbox"
+          :id="controlId"
+          :name="controlName"
+          :value="control.value"
+          v-model="checked"
+      /></span>
+      <span class="twpx-form-control__switch-text">Включить этот пункт</span>
+    </label>
+    <div class="twpx-form-control-hint" v-if="hint" v-html="hint"></div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      controlId: this.id || this.control.id || null,
+      controlName: this.name || this.control.name || null,
+      hint: this.control.hint_external,
+    };
+  },
+  props: ['control', 'id', 'name'],
+  emits: ['input'],
+  computed: {
+    checked: {
+      get() {
+        return this.control.checked;
+      },
+      set(checked) {
+        this.$emit('input', { checked });
+      },
+    },
+    invalid() {
+      return !this.validate();
+    },
+    disabled() {
+      return this.control.disabled;
+    },
+  },
+  methods: {
+    validate() {
+      if (
+        !this.control.required ||
+        (this.control.required && this.control.checked)
+      ) {
+        return true;
+      }
+      return false;
+    },
+  },
+};
+</script>
+
+<style>
+.twpx-form-control {
+  position: relative;
+  margin-bottom: 16px;
+}
+.twpx-form-control-hint {
+  color: #2d3142;
+  font-size: 9px;
+  margin: 8px 0 0 14px;
+  line-height: 1.2;
+}
+
+/*Switch*/
+.twpx-form-control label {
+  display: flex;
+}
+.twpx-form-control__switch {
+  display: block;
+  width: 36px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: #c5eb52;
+  position: relative;
+  cursor: pointer;
+  margin-right: var(--slr2-gap-middle);
+}
+.twpx-form-control__switch.twpx-form-control__switch--off {
+  background-color: #d6dfe3;
+}
+.twpx-form-control__switch::before {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  background-color: #585c65;
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  -webkit-transition: left 0.1s linear;
+  transition: left 0.1s linear;
+  z-index: 10;
+}
+.twpx-form-control__switch.twpx-form-control__switch--off::before {
+  top: 3px;
+  left: 14px;
+}
+.twpx-form-control__switch input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -1;
+}
+</style>

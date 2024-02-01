@@ -6,7 +6,7 @@
     :name="name"
     @input="input"
   ></component>
-  <hr />
+  <hr v-if="control.property !== 'heading'" />
 </template>
 
 <script>
@@ -16,6 +16,8 @@ import ControlTextareaFormat from './controls/ControlTextareaFormat.vue';
 import ControlMultiselect from './controls/ControlMultiselect.vue';
 import ControlSelectRadio from './controls/ControlSelectRadio.vue';
 import ControlCheckboxCheckbox from './controls/ControlCheckboxCheckbox.vue';
+import ControlCheckboxSwitch from './controls/ControlCheckboxSwitch.vue';
+import ControlHeading from './controls/ControlHeading.vue';
 
 export default {
   data() {
@@ -44,6 +46,8 @@ export default {
     ControlMultiselect,
     ControlSelectRadio,
     ControlCheckboxCheckbox,
+    ControlCheckboxSwitch,
+    ControlHeading,
   },
 };
 </script>

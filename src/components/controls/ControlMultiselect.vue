@@ -6,7 +6,6 @@
       'twpx-form-control--disabled': disabled,
     }"
   >
-    <div class="twpx-form-control__title">{{ control.label }}</div>
     <div class="twpx-form-control__multiselect">
       <div
         class="twpx-form-control__multiselect-item"
@@ -85,11 +84,6 @@ export default {
 .twpx-form-control {
   position: relative;
   margin-bottom: var(--slr2-gap-middle);
-}
-.twpx-form-control__title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 16px;
 }
 .twpx-form-control-hint {
   color: #2d3142;

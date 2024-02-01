@@ -44,10 +44,14 @@ export default createStore({
           // dependency: 'id6',
         },
         {
+          property: 'heading',
+          id: 'idH0',
+          label: 'Пункты для выбора',
+        },
+        {
           property: 'multiselect',
           id: 'id4',
           name: 'POINTS',
-          label: 'Пункты для выбора',
           options: [
             {
               label: 'Машиностроение',
@@ -124,6 +128,19 @@ export default createStore({
         },
         {
           property: 'checkbox',
+          type: 'switch',
+          id: 'id11',
+          name: 'SWITCH',
+          required: false,
+          label: 'Checkbox, от которого зависят остальные поля',
+          value: 'on',
+          checked: true,
+          disabled: false,
+          hint_external:
+            'Подсказка для checkbox может быть неожиданно очень длинной.',
+        },
+        {
+          property: 'checkbox',
           type: 'checkbox',
           id: 'id6',
           name: 'DEPENDENCY_CHECKBOX',
@@ -174,6 +191,9 @@ export default createStore({
     changeCheckboxValue(_, { control, checked }) {
       control.checked = checked;
     },
+    changeSelectRadioValue(_, { control, value }) {
+      control.value = value;
+    },
     validateControl(_, control) {
       control.validateWatcher = !control.validateWatcher;
     },
@@ -196,6 +216,14 @@ export default createStore({
           break;
         case 'checkbox':
           commit('changeCheckboxValue', { control, checked });
+          break;
+        case 'select':
+          commit(
+            `changeSelect${control.type
+              .substring(0, 1)
+              .toUpperCase()}${control.type.substring(1).toLowerCase()}Value`,
+            { control, value }
+          );
           break;
       }
     },
