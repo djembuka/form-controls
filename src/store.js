@@ -5,6 +5,19 @@ export default createStore({
     return {
       controls: [
         {
+          property: 'file',
+          id: 'id0',
+          name: 'FILE',
+          label: '<a href="">Выберите файл</a> или перетащите в поле',
+          value: '',
+          required: true,
+          disabled: false,
+          accept: ['pdf', 'exe', 'jpg'],
+          image: true,
+          maxsize: 10000000,
+          dependency: 'id6',
+        },
+        {
           property: 'text',
           id: 'id1',
           name: 'NAME',
@@ -20,7 +33,7 @@ export default createStore({
         },
         {
           property: 'textarea',
-          type: 'format',
+          type: 'formatted',
           id: 'id2',
           name: 'TEXT_FORMATTED',
           label: 'Textarea с форматированием',
@@ -33,11 +46,12 @@ export default createStore({
         },
         {
           property: 'textarea',
+          type: 'plain',
           id: 'id3',
           name: 'TEXT',
           label: 'Textarea',
           value:
-            'Lorem ipsum dolor sit consectetur adipisicing elit. molestias, ut dolorum dolore aperiam dolorem? Obcaecati, eligendi deleniti corrupti totam, temporibus magnam vero reprehenderit veritatis illo ab impedit quibusdam aliquid! Inventore illum, deserunt sunt qui repellat natus soluta? Itaque magnam odit facilis, nemo similique, molestias est atque velit sit unde aliquam quis, quod dolore! Eligendi amet aliquid quis maiores dolore eum minus illo sapiente, reprehenderit optio id non repudiandae voluptas, nisi officiis necessitatibus itaque soluta at voluptate odit quasi porro. Corrupti laudantium cupiditate labore voluptate dolores magnam ea non sunt sint facere velit, harum illum?',
+            'Lorem ipsum dolor sit <b>amet</b> consectetur adipisicing elit. <a href="">Ab blanditiis</a> molestias <i>velit eaque</i>, ut dolorum dolore aperiam dolorem? Obcaecati <span style="color: pink;">facere magni</span>, eligendi deleniti corrupti totam, temporibus magnam vero reprehenderit veritatis illo ab impedit quibusdam aliquid! Inventore illum, deserunt sunt qui repellat natus soluta? Itaque magnam odit facilis, nemo similique, molestias est atque velit sit unde aliquam quis, quod dolore! Eligendi amet aliquid quis maiores dolore eum minus illo sapiente, reprehenderit optio id non repudiandae voluptas, nisi officiis necessitatibus itaque soluta at voluptate odit quasi porro. Corrupti laudantium cupiditate labore voluptate dolores magnam ea non sunt sint facere velit, harum illum?',
           required: true,
           disabled: false,
           hint_external: 'Подробно опишите задание',
@@ -108,7 +122,8 @@ export default createStore({
           label: 'Radio кнопки',
           options: [
             {
-              label: 'Машиностроение',
+              label:
+                'molestias est atque velit sit unde aliquam quis, quod dolore! Eligendi amet aliquid quis maiores dolore eum minus illo sapiente, reprehenderit optio id non repudiandae voluptas, nisi officiis necessitatibus itaque soluta at voluptate odit quasi porro. Corrupti laudantium cupiditate labore voluptate dolores magnam ea non sunt sint facere velit, harum illum?',
               code: '23423423423',
             },
             {
@@ -132,7 +147,46 @@ export default createStore({
           id: 'id11',
           name: 'SWITCH',
           required: false,
-          label: 'Checkbox, от которого зависят остальные поля',
+          label:
+            'labore voluptate dolores magnam ea non sunt sint facere velit, harum illum?',
+          value: 'on',
+          checked: true,
+          disabled: false,
+          hint_external: '',
+        },
+        {
+          property: 'checkbox',
+          type: 'switch',
+          id: 'id11',
+          name: 'SWITCH',
+          required: false,
+          label:
+            'molestias est atque velit sit unde aliquam quis, quod dolore! Eligendi amet aliquid quis maiores dolore eum minus illo sapiente, reprehenderit optio id non repudiandae voluptas, nisi officiis necessitatibus itaque soluta at voluptate odit quasi porro. Corrupti laudantium cupiditate labore voluptate dolores magnam ea non sunt sint facere velit, harum illum?',
+          value: 'on',
+          checked: true,
+          disabled: false,
+          hint_external: '',
+        },
+        {
+          property: 'checkbox',
+          type: 'switch',
+          id: 'id11',
+          name: 'SWITCH',
+          required: false,
+          label: '',
+          value: 'on',
+          checked: true,
+          disabled: false,
+          hint_external: '',
+        },
+        {
+          property: 'checkbox',
+          type: 'switch',
+          id: 'id11',
+          name: 'SWITCH',
+          required: false,
+          label:
+            'Eligendi amet aliquid quis maiores dolore eum minus illo sapiente',
           value: 'on',
           checked: true,
           disabled: false,
@@ -145,7 +199,8 @@ export default createStore({
           id: 'id6',
           name: 'DEPENDENCY_CHECKBOX',
           required: false,
-          label: 'Checkbox, от которого зависят остальные поля',
+          label:
+            'molestias est atque velit sit unde aliquam quis, quod dolore! Eligendi amet aliquid quis maiores dolore eum minus illo sapiente, reprehenderit optio id non repudiandae voluptas, nisi officiis necessitatibus itaque soluta at voluptate odit quasi porro. Corrupti laudantium cupiditate labore voluptate dolores magnam ea non sunt sint facere velit, harum illum?',
           value: 'on',
           checked: false,
           disabled: false,

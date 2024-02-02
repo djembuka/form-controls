@@ -225,7 +225,8 @@ export default {
   outline: none;
   color: #ff0000;
 }
-.twpx-form-control--disabled .twpx-form-control__textarea {
+.twpx-form-control--disabled .twpx-form-control__textarea,
+.twpx-form-control--disabled .twpx-form-control__textarea-content {
   color: #00000055;
   pointer-events: none;
   background-color: #f5f7f855;

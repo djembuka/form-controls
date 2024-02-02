@@ -18,7 +18,7 @@
           :value="control.value"
           v-model="checked"
       /></span>
-      <span class="twpx-form-control__switch-text">Включить этот пункт</span>
+      <span class="twpx-form-control__switch-text">{{ control.label }}</span>
     </label>
     <div class="twpx-form-control-hint" v-if="hint" v-html="hint"></div>
   </div>
@@ -80,6 +80,7 @@ export default {
 /*Switch*/
 .twpx-form-control label {
   display: flex;
+  align-items: center;
 }
 .twpx-form-control__switch {
   display: block;
@@ -90,6 +91,7 @@ export default {
   position: relative;
   cursor: pointer;
   margin-right: var(--slr2-gap-middle);
+  flex-shrink: 0;
 }
 .twpx-form-control__switch.twpx-form-control__switch--off {
   background-color: #d6dfe3;
@@ -118,5 +120,9 @@ export default {
   left: 0;
   opacity: 0;
   z-index: -1;
+}
+.twpx-form-control__switch-text {
+  line-height: var(--slr2-font-size-sm);
+  font-size: var(--slr2-font-size-sm);
 }
 </style>

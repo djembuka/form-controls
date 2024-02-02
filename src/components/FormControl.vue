@@ -10,9 +10,10 @@
 </template>
 
 <script>
+import ControlFile from './controls/ControlFile.vue';
 import ControlText from './controls/ControlText.vue';
-import ControlTextarea from './controls/ControlTextarea.vue';
-import ControlTextareaFormat from './controls/ControlTextareaFormat.vue';
+import ControlTextareaPlain from './controls/ControlTextareaPlain.vue';
+import ControlTextareaFormatted from './controls/ControlTextareaFormatted.vue';
 import ControlMultiselect from './controls/ControlMultiselect.vue';
 import ControlSelectRadio from './controls/ControlSelectRadio.vue';
 import ControlCheckboxCheckbox from './controls/ControlCheckboxCheckbox.vue';
@@ -40,9 +41,10 @@ export default {
     },
   },
   components: {
+    ControlFile,
     ControlText,
-    ControlTextarea,
-    ControlTextareaFormat,
+    ControlTextareaPlain,
+    ControlTextareaFormatted,
     ControlMultiselect,
     ControlSelectRadio,
     ControlCheckboxCheckbox,
