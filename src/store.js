@@ -8,13 +8,14 @@ export default createStore({
           property: 'file',
           id: 'id0',
           name: 'FILE',
-          label: '<a href="">Выберите файл</a> или перетащите в поле',
+          label: 'Картинка превью',
           value: '',
           required: true,
           disabled: false,
           accept: ['pdf', 'exe', 'jpg'],
           image: true,
           maxsize: 10000000,
+          hint_external: 'Загрузите картинку превью',
           dependency: 'id6',
         },
         {
@@ -229,6 +230,9 @@ export default createStore({
     },
   },
   mutations: {
+    changeFileValue(_, { control, value }) {
+      control.value = value;
+    },
     changeTextControlValue(_, { control, value }) {
       control.value = value;
     },
@@ -279,6 +283,9 @@ export default createStore({
               .toUpperCase()}${control.type.substring(1).toLowerCase()}Value`,
             { control, value }
           );
+          break;
+        case 'file':
+          commit('changeFileValue', { control, value });
           break;
       }
     },

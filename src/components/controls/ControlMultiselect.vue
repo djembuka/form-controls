@@ -115,7 +115,7 @@ export default {
 .twpx-form-control__multiselect-item.twpx-form-control__multiselect-item--checked {
   background-color: #2d3142;
   color: #fff;
-  font-weight: bold;
+  font-weight: normal;
 }
 .twpx-form-control--disabled {
   pointer-events: none;

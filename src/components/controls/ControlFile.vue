@@ -3,7 +3,6 @@
     :class="{
       'twpx-form-control': true,
       'twpx-form-control--active': active,
-      'twpx-form-control--focused': focused,
       'twpx-form-control--invalid': invalid,
       'twpx-form-control--disabled': disabled,
     }"
@@ -50,6 +49,7 @@
         ref="dropzone"
       ></label>
     </div>
+    <div class="twpx-form-control__hint" v-html="hint" v-if="hint"></div>
   </div>
 </template>
 
@@ -57,11 +57,9 @@
 export default {
   data() {
     return {
-      disabled: this.control.disabled,
-      loading: false,
-      isFileLoaded: false,
-      isActive: true,
+      active: true,
       files: [],
+      default: '<a href="">Выберите файл</a>&nbsp;или перетащите в поле',
       icon: `<g transform="translate(-4.461)">
           <g transform="translate(4.461)">
             <g>
@@ -74,8 +72,12 @@ export default {
         </g>`,
     };
   },
-  props: ['control', 'variantId'],
+  props: ['control'],
+  emits: ['input'],
   computed: {
+    disabled() {
+      return this.control.disabled;
+    },
     invalid() {
       return !!this.invalidString;
     },
@@ -85,25 +87,21 @@ export default {
     isFilled() {
       return !!this.filename;
     },
-    fileid() {
-      return this.control.value;
-    },
     invalidString() {
       if (this.files[0] && this.files[0].size && this.files[0].name) {
-        if (this.files[0].size >= this.control.maxSize) {
+        if (this.files[0].size >= this.control.maxsize) {
           //this.files = [];
           return `Размер файла превышает ${this.formatSize(
-            this.control.maxSize
+            this.control.maxsize
           )}`;
         }
 
         const filename = this.files[0].name;
         const lastIndex = filename.lastIndexOf('.');
-        const regExp = new RegExp(this.control.ext.join('|'));
+        const regExp = new RegExp(this.control.accept.join('|'));
 
         if (!regExp.test(filename.substring(lastIndex + 1).toLowerCase())) {
-          //this.files = [];
-          return `Прикладывайте файлы ${this.control.ext
+          return `Прикладывайте файлы ${this.control.accept
             .map((w) => w.toUpperCase())
             .join(', ')}.`;
         }
@@ -120,7 +118,7 @@ export default {
       if (this.control.value) {
         return this.control.value;
       }
-      return this.control.default;
+      return this.default;
     },
     filename() {
       return this.control.value;
@@ -128,26 +126,15 @@ export default {
   },
   methods: {
     uploadFile(files) {
-      this.$store.commit('setControlValue', {
-        blockId: this.$store.getters.isEditedBlock.id,
-        variantId: this.variantId,
-        controlId: this.control.id,
-        value: files[0].name,
-      });
-
       this.files = files;
+      if (!this.invalidString) {
+        this.$emit('input', { value: files[0].name });
+      }
     },
     clearInputFile() {
-      this.loading = false;
       this.files = [];
       this.$refs.inputFile.value = '';
-      //set value
-      this.$store.commit('setControlValue', {
-        blockId: this.$store.getters.isEditedBlock.id,
-        variantId: this.variantId,
-        controlId: this.control.id,
-        value: '',
-      });
+      this.$emit('input', { value: '' });
     },
     cancelEvent(e) {
       e.preventDefault();
@@ -208,19 +195,18 @@ export default {
 
     dropZone.addEventListener('drop', (e) => {
       controlFile.classList.remove('dragover');
-      controlFile.classList.add('filled');
       this.uploadFile(e.dataTransfer.files);
     });
   },
 };
 </script>
 
-<style scoped>
+<style>
 .twpx-form-control {
   position: relative;
   margin-bottom: var(--slr2-gap-middle);
 }
-.twpx-form-control__disabled-icon {
+.twpx-form-control__file__disabled-icon {
   position: absolute;
   top: 16px;
   right: 16px;
@@ -228,6 +214,7 @@ export default {
   height: 16px;
   pointer-events: none;
   z-index: 10;
+  display: none;
 }
 .twpx-form-control__file label span {
   color: #ea4420;
@@ -468,5 +455,14 @@ export default {
 }
 .twpx-form-control__file__clear.btn--load-circle:before {
   display: none;
+}
+.twpx-form-control__warning,
+.twpx-form-control__hint {
+  font-size: 9pt;
+  margin: 5px;
+  line-height: 1.1;
+}
+.twpx-form-control__warning {
+  color: #ff0000;
 }
 </style>
