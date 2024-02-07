@@ -60,6 +60,7 @@ export default {
       active: true,
       files: [],
       default: '<a href="">Выберите файл</a>&nbsp;или перетащите в поле',
+      hint: this.control.hint_external,
       icon: `<g transform="translate(-4.461)">
           <g transform="translate(4.461)">
             <g>

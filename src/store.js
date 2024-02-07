@@ -5,6 +5,35 @@ export default createStore({
     return {
       controls: [
         {
+          property: 'heading',
+          id: 'idH0',
+          label: 'Datepicker -  https://vue3datepicker.com/installation/',
+        },
+        {
+          property: 'date',
+          type: 'single',
+          id: 'id45',
+          label: 'Календарь',
+          name: 'DATE',
+          required: true,
+          value: '28.02.2024',
+          hint_external:
+            'Подсказка для checkbox может быть неожиданно очень длинной.',
+          dependency: 'id6',
+        },
+        {
+          property: 'date',
+          type: 'range',
+          id: 'id45',
+          label: 'Календарь',
+          name: 'DATE',
+          required: true,
+          value: ['20.02.2024', '28.02.2024'],
+          hint_external:
+            'Подсказка для checkbox может быть неожиданно очень длинной.',
+          dependency: 'id6',
+        },
+        {
           property: 'file',
           id: 'id0',
           name: 'FILE',
@@ -253,6 +282,9 @@ export default createStore({
     changeSelectRadioValue(_, { control, value }) {
       control.value = value;
     },
+    changeDateValue(_, { control, value }) {
+      control.value = value;
+    },
     validateControl(_, control) {
       control.validateWatcher = !control.validateWatcher;
     },
@@ -286,6 +318,9 @@ export default createStore({
           break;
         case 'file':
           commit('changeFileValue', { control, value });
+          break;
+        case 'date':
+          commit('changeDateValue', { control, value });
           break;
       }
     },
