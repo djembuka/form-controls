@@ -20,6 +20,7 @@ import ControlCheckboxCheckbox from './controls/ControlCheckboxCheckbox.vue';
 import ControlCheckboxSwitch from './controls/ControlCheckboxSwitch.vue';
 import ControlDateSingle from './controls/ControlDateSingle.vue';
 import ControlDateRange from './controls/ControlDateRange.vue';
+import ControlColor from './controls/ControlColor.vue';
 import ControlHeading from './controls/ControlHeading.vue';
 
 export default {
@@ -53,6 +54,7 @@ export default {
     ControlCheckboxSwitch,
     ControlDateSingle,
     ControlDateRange,
+    ControlColor,
     ControlHeading,
   },
 };

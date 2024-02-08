@@ -7,6 +7,24 @@ export default createStore({
         {
           property: 'heading',
           id: 'idH0',
+          label:
+            'Colorpicker -  https://www.npmjs.com/package/vue3-colorpicker',
+        },
+        {
+          property: 'color',
+          id: 'id45',
+          label: 'Цвет фона',
+          name: 'COLOR',
+          required: true,
+          value: '#CC3399',
+          primary: '#ff33bb',
+          secondary: '#a3ff33',
+          hint_external: 'Подсказка',
+          dependency: 'id6',
+        },
+        {
+          property: 'heading',
+          id: 'idH0',
           label: 'Datepicker -  https://vue3datepicker.com/installation/',
         },
         {
@@ -262,6 +280,9 @@ export default createStore({
     changeFileValue(_, { control, value }) {
       control.value = value;
     },
+    changeColorValue(_, { control, value }) {
+      control.value = value;
+    },
     changeTextControlValue(_, { control, value }) {
       control.value = value;
     },
@@ -321,6 +342,9 @@ export default createStore({
           break;
         case 'date':
           commit('changeDateValue', { control, value });
+          break;
+        case 'color':
+          commit('changeColorValue', { control, value });
           break;
       }
     },
