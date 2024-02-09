@@ -5,6 +5,62 @@ export default createStore({
     return {
       controls: [
         {
+          property: 'select',
+          type: 'dropdown',
+          id: 'id80',
+          name: 'ACTIVITY_TYPES',
+          label: 'Select control',
+          options: [
+            {
+              label:
+                'molestias est atque velit sit unde aliquam quis, quod dolore! Eligendi amet aliquid quis maiores dolore eum minus illo sapiente, reprehenderit optio id non repudiandae voluptas, nisi officiis necessitatibus itaque soluta at voluptate odit quasi porro. Corrupti laudantium cupiditate labore voluptate dolores magnam ea non sunt sint facere velit, harum illum?',
+              code: '23423423423',
+            },
+            {
+              label: 'Сельское хозяйство',
+              code: '324234324',
+            },
+            {
+              label:
+                'Очень длинный пункт меню, который можно добавить к радио кнопке с переносом строки',
+              code: '324234325',
+            },
+          ],
+          value: '',
+          disabled: false,
+          hint_external:
+            'Введите подсказку для этого блока, которая может быть очень длинная, но мы не будем ее выводить всегда, иногда подсказки не будет совсем.',
+          //   dependency: 'id6',
+        },
+        {
+          property: 'select',
+          type: 'dropdown',
+          id: 'id5',
+          name: 'ACTIVITY_TYPES',
+          label: 'Select control',
+          options: [
+            {
+              label:
+                'molestias est atque velit sit unde aliquam quis, quod dolore! Eligendi amet aliquid quis maiores dolore eum minus illo sapiente, reprehenderit optio id non repudiandae voluptas, nisi officiis necessitatibus itaque soluta at voluptate odit quasi porro. Corrupti laudantium cupiditate labore voluptate dolores magnam ea non sunt sint facere velit, harum illum?',
+              code: '23423423423',
+            },
+            {
+              label: 'Сельское хозяйство',
+              code: '324234324',
+            },
+            {
+              label:
+                'Очень длинный пункт меню, который можно добавить к радио кнопке с переносом строки',
+              code: '324234325',
+            },
+          ],
+          value: '',
+          disabled: false,
+          hint_external:
+            'Введите подсказку для этого блока, которая может быть очень длинная, но мы не будем ее выводить всегда, иногда подсказки не будет совсем.',
+          //   dependency: 'id6',
+        },
+        {
           property: 'heading',
           id: 'idH0',
           label:
@@ -301,6 +357,9 @@ export default createStore({
       control.checked = checked;
     },
     changeSelectRadioValue(_, { control, value }) {
+      control.value = value;
+    },
+    changeSelectDropdownValue(_, { control, value }) {
       control.value = value;
     },
     changeDateValue(_, { control, value }) {

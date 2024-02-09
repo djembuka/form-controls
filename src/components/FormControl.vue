@@ -15,6 +15,7 @@ import ControlText from './controls/ControlText.vue';
 import ControlTextareaPlain from './controls/ControlTextareaPlain.vue';
 import ControlTextareaFormatted from './controls/ControlTextareaFormatted.vue';
 import ControlMultiselect from './controls/ControlMultiselect.vue';
+import ControlSelectDropdown from './controls/ControlSelectDropdown.vue';
 import ControlSelectRadio from './controls/ControlSelectRadio.vue';
 import ControlCheckboxCheckbox from './controls/ControlCheckboxCheckbox.vue';
 import ControlCheckboxSwitch from './controls/ControlCheckboxSwitch.vue';
@@ -49,6 +50,7 @@ export default {
     ControlTextareaPlain,
     ControlTextareaFormatted,
     ControlMultiselect,
+    ControlSelectDropdown,
     ControlSelectRadio,
     ControlCheckboxCheckbox,
     ControlCheckboxSwitch,
