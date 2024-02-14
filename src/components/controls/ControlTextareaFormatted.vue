@@ -21,6 +21,7 @@
         v-html="value"
         @focus="focus"
         @blur="blur"
+        @keydown="keydown"
         :disabled="disabled"
         ref="textarea"
         contenteditable="true"
@@ -103,6 +104,12 @@ export default {
     change() {
       this.value = this.$refs.textarea.innerHTML;
     },
+    keydown() {
+      //autoheight
+      this.$refs.textarea.style.height = 'auto';
+      let height = this.$refs.textarea.scrollHeight;
+      this.$refs.textarea.style.height = `${height > 100 ? height : 100}px`;
+    },
     validate() {
       if (
         (this.control.required && this.value.trim()) ||
@@ -126,6 +133,10 @@ export default {
       }
       return true;
     },
+  },
+  mounted() {
+    let height = this.$refs.textarea.scrollHeight;
+    this.$refs.textarea.style.height = `${height > 100 ? height : 100}px`;
   },
 };
 </script>
@@ -197,7 +208,7 @@ export default {
   outline: none !important;
   font-family: 'Open Sans', sans-serif;
   font-size: 14px !important;
-  overflow: auto;
+  overflow: hidden;
   scrollbar-color: #ccc #fff;
   scrollbar-width: thin;
 }

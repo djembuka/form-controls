@@ -374,8 +374,8 @@ export default {
 .twpx-form-control--disabled .twpx-form-control__file {
   pointer-events: none;
 }
-.twpx-form-control--disabled label,
-.twpx-form-control--disabled:active label {
+.twpx-form-control--disabled .twpx-form-control__file label,
+.twpx-form-control--disabled:active .twpx-form-control__file label {
   color: #00000055;
   pointer-events: none;
   background-color: #f5f7f855;

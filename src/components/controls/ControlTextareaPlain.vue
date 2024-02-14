@@ -57,6 +57,10 @@ export default {
       },
       set(value) {
         this.$emit('input', { value });
+        //autoheight
+        this.$refs.textarea.style.height = 'auto';
+        let height = this.$refs.textarea.scrollHeight;
+        this.$refs.textarea.style.height = `${height > 100 ? height : 100}px`;
       },
     },
     placeholder() {
@@ -122,6 +126,10 @@ export default {
       }
       return true;
     },
+  },
+  mounted() {
+    let height = this.$refs.textarea.scrollHeight;
+    this.$refs.textarea.style.height = `${height > 100 ? height : 100}px`;
   },
 };
 </script>

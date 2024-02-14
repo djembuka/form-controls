@@ -199,7 +199,7 @@ export default {
   [type='checkbox'].filled-in:checked
   + span:before {
   top: 2px;
-  left: 3px;
+  left: 4px;
   width: 5px;
   height: 8px;
   border-top: 2px solid transparent;
