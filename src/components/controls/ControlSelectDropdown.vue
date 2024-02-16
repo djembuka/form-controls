@@ -2,41 +2,40 @@
   <div
     :class="{
       'twpx-form-control': true,
+      'twpx-form-control--select': true,
       'twpx-form-control--active': active,
       'twpx-form-control--invalid': invalid,
       'twpx-form-control--disabled': disabled,
     }"
   >
-    <div class="twpx-form-controls--select">
-      <img
-        :src="disabled"
-        class="twpx-form-control__disabled-icon"
-        v-if="disabled"
-      />
-      <div class="twpx-form-control__label">{{ control.label }}</div>
+    <img
+      :src="disabled"
+      class="twpx-form-control__disabled-icon"
+      v-if="disabled"
+    />
+    <div class="twpx-form-control__label">{{ control.label }}</div>
+    <div
+      class="twpx-form-control-select"
+      :class="{ 'twpx-form-control-select--dropdown': opened }"
+      :data-id="id"
+      id="id"
+    >
+      <input type="hidden" :name="name" :value="value" />
+      <div class="twpx-form-control-select__arrow" v-html="arrowIcon"></div>
       <div
-        class="twpx-form-control-select"
-        :class="{ 'twpx-form-control-select--dropdown': opened }"
-        :data-id="id"
-        id="id"
+        class="twpx-form-control-select__content"
+        @click.prevent="openDropdown"
       >
-        <input type="hidden" :name="name" :value="value" />
-        <div class="twpx-form-control-select__arrow" v-html="arrowIcon"></div>
+        {{ text }}
+      </div>
+      <div class="twpx-form-control-select__dropdown">
         <div
-          class="twpx-form-control-select__content"
-          @click.prevent="openDropdown"
+          class="twpx-form-control-select__dropdown-item"
+          v-for="(option, i) in control.options"
+          :key="option.code"
+          @click.prevent="clickItem(i)"
         >
-          {{ text }}
-        </div>
-        <div class="twpx-form-control-select__dropdown">
-          <div
-            class="twpx-form-control-select__dropdown-item"
-            v-for="(option, i) in control.options"
-            :key="option.code"
-            @click.prevent="clickItem(i)"
-          >
-            {{ option.label }}
-          </div>
+          {{ option.label }}
         </div>
       </div>
     </div>
@@ -180,18 +179,18 @@ export default {
 </script>
 
 <style>
-.twpx-form-control {
+.twpx-form-control--select {
   position: relative;
   margin-bottom: var(--slr2-gap-middle);
   width: 100%;
 }
-.twpx-form-control--active .twpx-form-control__label {
+.twpx-form-control--select.twpx-form-control--active .twpx-form-control__label {
   -webkit-transform: translateY(5px);
   transform: translateY(5px);
   font-size: 9px;
   color: #848c95;
 }
-.twpx-form-control__disabled-icon {
+.twpx-form-control--select .twpx-form-control__disabled-icon {
   position: absolute;
   top: 16px;
   right: 16px;
@@ -200,7 +199,7 @@ export default {
   pointer-events: none;
   z-index: 10;
 }
-.twpx-form-control__label {
+.twpx-form-control--select .twpx-form-control__label {
   position: absolute;
   top: 0;
   left: 14px;
@@ -217,37 +216,29 @@ export default {
   line-height: 1.1;
   z-index: 40;
 }
-.twpx-form-control--invalid .twpx-form-control__label {
+.twpx-form-control--select.twpx-form-control--invalid
+  .twpx-form-control__label {
   color: #ff0000;
 }
-.twpx-form-control--disabled .twpx-form-control__label {
+.twpx-form-control--select.twpx-form-control--disabled
+  .twpx-form-control__label {
   color: #2d3142;
   opacity: 0.3;
 }
-.twpx-form-control__input:focus,
-.twpx-form-control__input:hover {
-  outline: none;
-  border-color: #2d3142 !important;
-}
-.twpx-form-control--invalid .twpx-form-control__input {
-  background-color: #fff5f5;
-  border-color: #e38080 !important;
-  outline: none;
-  color: #ff0000;
-}
-.twpx-form-control--disabled .twpx-form-control-select__content {
+.twpx-form-control--select.twpx-form-control--disabled
+  .twpx-form-control-select__content {
   color: #00000055;
   pointer-events: none;
   background-color: #f5f7f855;
   border: 1px solid #f5f7f855 !important;
 }
-.twpx-form-control__warning,
-.twpx-form-control__hint {
+.twpx-form-control--select .twpx-form-control__warning,
+.twpx-form-control--select .twpx-form-control__hint {
   font-size: 9pt;
   margin: 5px;
   line-height: 1.1;
 }
-.twpx-form-control__warning {
+.twpx-form-control--select .twpx-form-control__warning {
   color: #ff0000;
 }
 

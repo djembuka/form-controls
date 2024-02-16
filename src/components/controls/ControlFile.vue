@@ -2,6 +2,7 @@
   <div
     :class="{
       'twpx-form-control': true,
+      'twpx-form-control--file': true,
       'twpx-form-control--active': active,
       'twpx-form-control--invalid': invalid,
       'twpx-form-control--disabled': disabled,
@@ -203,7 +204,7 @@ export default {
 </script>
 
 <style>
-.twpx-form-control {
+.twpx-form-control--file {
   position: relative;
   margin-bottom: var(--slr2-gap-middle);
 }
@@ -335,20 +336,20 @@ export default {
   color: #fff;
 }
 /*invalid*/
-.twpx-form-control--invalid .a,
-.twpx-form-control__file--invalid:active .a {
+.twpx-form-control--file.twpx-form-control--invalid .a,
+.twpx-form-control--file.twpx-form-control__file--invalid:active .a {
   fill: #ff0000;
 }
-.twpx-form-control--invalid .b,
-.twpx-form-control__file--invalid:active .b {
+.twpx-form-control--file.twpx-form-control--invalid .b,
+.twpx-form-control--file.twpx-form-control__file--invalid:active .b {
   fill: #b10101;
 }
-.twpx-form-control--invalid .c,
-.twpx-form-control__file--invalid:active .c {
+.twpx-form-control--file.twpx-form-control--invalid .c,
+.twpx-form-control--file.twpx-form-control__file--invalid:active .c {
   fill: #fcc;
 }
-.twpx-form-control--invalid .d,
-.twpx-form-control__file--invalid:active .d {
+.twpx-form-control--file.twpx-form-control--invalid .d,
+.twpx-form-control--file.twpx-form-control__file--invalid:active .d {
   fill: #fff;
 }
 /*.twpx-form-control--invalid .a,
@@ -357,35 +358,39 @@ export default {
 .twpx-form-control--invalid:active .b {
   stroke: #ff0000;
 }*/
-.twpx-form-control--invalid label,
-.twpx-form-control--ivalid:active label {
+.twpx-form-control--file.twpx-form-control--invalid label,
+.twpx-form-control--file.twpx-form-control--ivalid:active label {
   background-color: #ffeaea;
   color: #ff0000;
   border-color: #e38080;
 }
-.twpx-form-control--invalid:hover label,
-.twpx-form-control--invalid:hover:active label {
+.twpx-form-control--file.twpx-form-control--invalid:hover label,
+.twpx-form-control--file.twpx-form-control--invalid:hover:active label {
   border-color: #ff0000;
 }
-.twpx-form-control--invalid label a,
-.twpx-form-control--invalid:active label a {
+.twpx-form-control--file.twpx-form-control--invalid label a,
+.twpx-form-control--file.twpx-form-control--invalid:active label a {
   color: #ff0000;
 }
-.twpx-form-control--disabled .twpx-form-control__file {
+.twpx-form-control--file.twpx-form-control--disabled .twpx-form-control__file {
   pointer-events: none;
 }
-.twpx-form-control--disabled .twpx-form-control__file label,
-.twpx-form-control--disabled:active .twpx-form-control__file label {
+.twpx-form-control--file.twpx-form-control--disabled
+  .twpx-form-control__file
+  label,
+.twpx-form-control--file.twpx-form-control--disabled:active
+  .twpx-form-control__file
+  label {
   color: #00000055;
   pointer-events: none;
   background-color: #f5f7f855;
   border: 1px solid #f5f7f855 !important;
 }
-.twpx-form-control--disabled label a,
-.twpx-form-control--disabled:active label a {
+.twpx-form-control--file.twpx-form-control--disabled label a,
+.twpx-form-control--file.twpx-form-control--disabled:active label a {
   color: #0a16aa55;
 }
-.twpx-form-control--disabled svg {
+.twpx-form-control--file.twpx-form-control--disabled svg {
   opacity: 0.3;
 }
 
@@ -399,16 +404,18 @@ export default {
   line-height: 1.1;
   z-index: 10;
 }
-.twpx-form-control--invalid .twpx-form-control__file__label {
+.twpx-form-control--file.twpx-form-control--invalid
+  .twpx-form-control__file__label {
   color: #ff0000;
 }
-.twpx-form-control--disabled .twpx-form-control__file__label {
+.twpx-form-control--file.twpx-form-control--disabled
+  .twpx-form-control__file__label {
   color: #2d3142;
   opacity: 0.3;
 }
 .twpx-form-control__file__clear {
   position: absolute;
-  top: calc(50% - 8px);
+  top: 16px;
   right: 16px;
   width: 16px;
   height: 16px;

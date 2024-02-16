@@ -1,16 +1,23 @@
 <template>
-  <div class="wrapper">
+  <div
+    :class="{
+      'twpx-form-control': true,
+      'twpx-form-control--color': true,
+      'twpx-form-control--invalid': invalid,
+      'twpx-form-control--disabled': disabled,
+    }"
+  >
     <div
       v-for="(color, i) in colors"
-      class="color"
-      :class="{ active: i === active }"
+      class="twpx-form-control__color"
+      :class="{ 'twpx-form-control--active': i === active }"
       :style="`background-color: ${color}`"
       :key="color"
       @click="chooseColor(i)"
       v-html="checkIcon"
     ></div>
-    <div class="picker">
-      <div class="picker-icon" v-html="pickerIcon"></div>
+    <div class="twpx-form-control__picker">
+      <div class="twpx-form-control__picker-icon" v-html="pickerIcon"></div>
       <color-picker
         v-model:pureColor="color"
         format="hex"
@@ -91,16 +98,17 @@ export default {
 </script>
 
 <style>
-.wrapper {
+.twpx-form-control--color {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  flex-wrap: wrap;
 }
-.color {
+.twpx-form-control__color {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  margin-right: 8px;
+  margin: 0 8px 8px 0;
   flex-shrink: 0;
   cursor: pointer;
   -webkit-transition: opacity 0.3s ease;
@@ -109,20 +117,20 @@ export default {
   justify-content: center;
   align-items: center;
 }
-.color svg {
+.twpx-form-control__color svg {
   display: none;
   transform: translateY(-2px);
 }
-.color.active svg {
+.twpx-form-control__color.twpx-form-control--active svg {
   display: block;
 }
-.color:hover {
+.twpx-form-control__color:hover {
   opacity: 0.7;
 }
-.picker {
+.twpx-form-control__picker {
   position: relative;
 }
-.picker-icon {
+.twpx-form-control__picker-icon {
   position: absolute;
   top: 0;
   left: 0;
@@ -134,16 +142,19 @@ export default {
   pointer-events: none;
   z-index: 10;
 }
-.vc-color-wrap.round {
+.twpx-form-control--color .vc-color-wrap.round {
   width: 32px !important;
   height: 32px !important;
   border: none !important;
   box-shadow: none !important;
 }
-.vc-input-toggle {
+.twpx-form-control--color .vc-input-toggle {
   display: none;
 }
-.vc-chrome-colorPicker-body .chrome-controls .chrome-sliders {
+.twpx-form-control--color
+  .vc-chrome-colorPicker-body
+  .chrome-controls
+  .chrome-sliders {
   margin-left: 0 !important;
 }
 </style>

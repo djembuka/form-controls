@@ -2,6 +2,7 @@
   <div
     :class="{
       'twpx-form-control': true,
+      'twpx-form-control--multiselect': true,
       'twpx-form-control--invalid': invalid,
       'twpx-form-control--disabled': disabled,
     }"
@@ -81,17 +82,17 @@ export default {
 </script>
 
 <style>
-.twpx-form-control {
+.twpx-form-control--multiselect {
   position: relative;
   margin-bottom: var(--slr2-gap-middle);
 }
-.twpx-form-control-hint {
+.twpx-form-control--multiselect .twpx-form-control-hint {
   color: #2d3142;
   font-size: 9px;
   margin: 8px 0 0 14px;
   line-height: 1.2;
 }
-.twpx-form-control__multiselect-item {
+.twpx-form-control--multiselect .twpx-form-control__multiselect-item {
   height: 36px;
   border-radius: 8px;
   display: inline-flex;
@@ -109,19 +110,21 @@ export default {
   user-select: none;
   margin: 0 16px 16px 0;
 }
-.twpx-form-control__multiselect-item:hover {
+.twpx-form-control--multiselect .twpx-form-control__multiselect-item:hover {
   background-color: #d7dee1;
 }
-.twpx-form-control__multiselect-item.twpx-form-control__multiselect-item--checked {
+.twpx-form-control--multiselect
+  .twpx-form-control__multiselect-item.twpx-form-control__multiselect-item--checked {
   background-color: #2d3142;
   color: #fff;
   font-weight: normal;
 }
-.twpx-form-control--disabled {
+.twpx-form-control--multiselect.twpx-form-control--disabled {
   pointer-events: none;
   opacity: 0.7;
 }
-.twpx-form-control--invalid .twpx-form-control__multiselect-item {
+.twpx-form-control--multiselect.twpx-form-control--invalid
+  .twpx-form-control__multiselect-item {
   background-color: #ffeeef;
   color: #ff2322;
 }

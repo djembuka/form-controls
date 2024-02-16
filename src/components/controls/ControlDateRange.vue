@@ -2,6 +2,7 @@
   <div
     :class="{
       'twpx-form-control': true,
+      'twpx-form-control--date': true,
       'twpx-form-control--active': active,
       'twpx-form-control--invalid': invalid,
       'twpx-form-control--disabled': disabled,
@@ -107,18 +108,12 @@ export default {
 </script>
 
 <style>
-.twpx-form-control {
+.twpx-form-control--date {
   position: relative;
   margin-bottom: var(--slr2-gap-middle);
   width: 100%;
 }
-.twpx-form-control--active .twpx-form-control__label {
-  -webkit-transform: translateY(5px);
-  transform: translateY(5px);
-  font-size: 9px;
-  color: #848c95;
-}
-.twpx-form-control__disabled-icon {
+.twpx-form-control--date .twpx-form-control__disabled-icon {
   position: absolute;
   top: 16px;
   right: 16px;
@@ -127,10 +122,10 @@ export default {
   pointer-events: none;
   z-index: 10;
 }
-.twpx-form-control__label {
+.twpx-form-control--date .twpx-form-control__label {
   position: absolute;
   top: 0;
-  left: 14px;
+  left: 34px;
   margin: 0;
   padding: 0;
   color: #2d3142;
@@ -144,14 +139,21 @@ export default {
   line-height: 1.1;
   z-index: 100;
 }
-.twpx-form-control--invalid .twpx-form-control__label {
+.twpx-form-control--date.twpx-form-control--active .twpx-form-control__label {
+  left: 14px;
+  -webkit-transform: translateY(5px);
+  transform: translateY(5px);
+  font-size: 9px;
+  color: #848c95;
+}
+.twpx-form-control--date.twpx-form-control--invalid .twpx-form-control__label {
   color: #ff0000;
 }
-.twpx-form-control--disabled .twpx-form-control__label {
+.twpx-form-control--date.twpx-form-control--disabled .twpx-form-control__label {
   color: #2d3142;
   opacity: 0.3;
 }
-.twpx-form-control .dp__input {
+.twpx-form-control--date .dp__input {
   display: block !important;
   width: 100%;
   margin: 0 !important;
@@ -168,30 +170,34 @@ export default {
   box-shadow: none !important;
   box-sizing: border-box;
 }
-.twpx-form-control .dp__input:focus,
-.twpx-form-control .dp__input:hover {
+.twpx-form-control--date .dp__input:focus,
+.twpx-form-control--date .dp__input:hover {
   outline: none;
   border-color: #2d3142 !important;
 }
-.twpx-form-control--invalid .twpx-form-control .dp__input {
+.twpx-form-control--date.twpx-form-control--invalid
+  .twpx-form-control
+  .dp__input {
   background-color: #fff5f5;
   border-color: #e38080 !important;
   outline: none;
   color: #ff0000;
 }
-.twpx-form-control--disabled .twpx-form-control .dp__input {
+.twpx-form-control--date.twpx-form-control--disabled
+  .twpx-form-control
+  .dp__input {
   color: #00000055;
   pointer-events: none;
   background-color: #f5f7f855;
   border: 1px solid #f5f7f855 !important;
 }
-.twpx-form-control__warning,
-.twpx-form-control__hint {
+.twpx-form-control--date .twpx-form-control__warning,
+.twpx-form-control--date .twpx-form-control__hint {
   font-size: 9pt;
   margin: 5px;
   line-height: 1.1;
 }
-.twpx-form-control__warning {
+.twpx-form-control--date .twpx-form-control__warning {
   color: #ff0000;
 }
 
@@ -238,7 +244,7 @@ export default {
   ); /*Timing on menu appear animation*/
   --dp-transition-timing: ease-out; /*Timing on slide animations*/
 }
-.dp__theme_light {
+.twpx-form-control--date .dp__theme_light {
   --dp-background-color: #fff;
   --dp-text-color: #73879c;
   --dp-hover-color: #dbedfb;
@@ -267,45 +273,45 @@ export default {
   --dp-range-between-border-color: var(--dp-hover-color, #dbedfb);
 }
 
-.dp__input {
+.twpx-form-control--date .dp__input {
   height: 48px;
   color: #2d3142;
 }
-.dp__menu {
+.twpx-form-control--date .dp__menu {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
-.dp__cell_inner {
+.twpx-form-control--date .dp__cell_inner {
   font-size: 12px;
 }
-.dp__cell_inner:hover {
+.twpx-form-control--date .dp__cell_inner:hover {
   background: #f3f9fe;
 }
-.dp__cell_inner.dp__range_start:hover,
-.dp__cell_inner.dp__range_end:hover {
+.twpx-form-control--date .dp__cell_inner.dp__range_start:hover,
+.twpx-form-control--date .dp__cell_inner.dp__range_end:hover {
   background: var(--dp-primary-color);
 }
-.dp__calendar_header {
+.twpx-form-control--date .dp__calendar_header {
   font-weight: normal;
 }
-.dp__today {
+.twpx-form-control--date .dp__today {
   border-color: transparent;
 }
-.dp__calendar_item .dp__today {
+.twpx-form-control--date .dp__calendar_item .dp__today {
   color: #2a90e9;
 }
-.dp__calendar_item .dp__today.dp__range_start,
-.dp__calendar_item .dp__today.dp__range_end {
+.twpx-form-control--date .dp__calendar_item .dp__today.dp__range_start,
+.twpx-form-control--date .dp__calendar_item .dp__today.dp__range_end {
   color: var(--dp-primary-text-color);
 }
-.dp__calendar_header_item {
+.twpx-form-control--date .dp__calendar_header_item {
   text-transform: capitalize;
   font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.dp__calendar_header_separator,
-.dp__action_row {
+.twpx-form-control--date .dp__calendar_header_separator,
+.twpx-form-control--date .dp__action_row {
   display: none;
 }
 </style>

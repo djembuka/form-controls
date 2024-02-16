@@ -1,7 +1,8 @@
 <template>
   <div
-    class="twpx-form-control"
     :class="{
+      'twpx-form-control': true,
+      'twpx-form-control--checkbox': true,
       'twpx-form-control--invalid': invalid,
       'twpx-form-control--disabled': disabled,
     }"
@@ -66,11 +67,11 @@ export default {
 </script>
 
 <style>
-.twpx-form-control {
+.twpx-form-control--checkbox {
   position: relative;
   margin-bottom: 16px;
 }
-.twpx-form-control-hint {
+.twpx-form-control--checkbox .twpx-form-control-hint {
   color: #2d3142;
   font-size: 9px;
   margin: 8px 0 0 14px;
@@ -78,11 +79,11 @@ export default {
 }
 
 /*Switch*/
-.twpx-form-control label {
+.twpx-form-control--checkbox label {
   display: flex;
   align-items: center;
 }
-.twpx-form-control__switch {
+.twpx-form-control--checkbox .twpx-form-control__switch {
   display: block;
   width: 36px;
   height: 24px;
@@ -93,10 +94,11 @@ export default {
   margin-right: var(--slr2-gap-middle);
   flex-shrink: 0;
 }
-.twpx-form-control__switch.twpx-form-control__switch--off {
+.twpx-form-control--checkbox
+  .twpx-form-control__switch.twpx-form-control__switch--off {
   background-color: #d6dfe3;
 }
-.twpx-form-control__switch::before {
+.twpx-form-control--checkbox .twpx-form-control__switch::before {
   content: '';
   display: block;
   width: 18px;
@@ -110,18 +112,19 @@ export default {
   transition: left 0.1s linear;
   z-index: 10;
 }
-.twpx-form-control__switch.twpx-form-control__switch--off::before {
+.twpx-form-control--checkbox
+  .twpx-form-control__switch.twpx-form-control__switch--off::before {
   top: 3px;
   left: 14px;
 }
-.twpx-form-control__switch input {
+.twpx-form-control--checkbox .twpx-form-control__switch input {
   position: absolute;
   top: 0;
   left: 0;
   opacity: 0;
   z-index: -1;
 }
-.twpx-form-control__switch-text {
+.twpx-form-control--checkbox .twpx-form-control__switch-text {
   line-height: var(--slr2-font-size-sm);
   font-size: var(--slr2-font-size-sm);
 }
