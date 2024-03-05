@@ -125,6 +125,14 @@ export default {
     filename() {
       return this.control.value;
     },
+    clearWatcher() {
+      return this.control.clearWatcher;
+    },
+  },
+  watch: {
+    clearWatcher() {
+      this.clearInputFile();
+    },
   },
   methods: {
     uploadFile(files) {

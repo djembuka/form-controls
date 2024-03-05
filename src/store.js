@@ -333,6 +333,10 @@ export default createStore({
     },
   },
   mutations: {
+    clearFileInput(_, { control }) {
+      control.clearWatcher = !control.clearWatcher;
+      console.log(control.clearWatcher);
+    },
     changeFileValue(_, { control, value }) {
       control.value = value;
     },
@@ -376,6 +380,9 @@ export default createStore({
     },
   },
   actions: {
+    clearFileInput({ commit }, { control }) {
+      commit('clearFileInput', { control });
+    },
     changeControlValue({ commit }, { control, value, checked }) {
       switch (control.property) {
         case 'text':

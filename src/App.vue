@@ -5,6 +5,7 @@
     :control="control"
   ></form-control>
   <button @click="changeValue">Change value</button>
+  <button @click="clearFileInput">Clear file input</button>
   <button @click="initValidation">init validation</button>
   <button @click="initFocus">init focus</button>
   <button @click="setDisabled">set disabled</button>
@@ -26,6 +27,11 @@ export default {
         control: this.$store.state.controls[0],
         value: '324234328',
         checked: true,
+      });
+    },
+    clearFileInput() {
+      this.$store.dispatch('clearFileInput', {
+        control: this.$store.state.controls[7],
       });
     },
     initValidation() {
