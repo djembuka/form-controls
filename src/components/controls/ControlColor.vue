@@ -49,7 +49,6 @@ export default {
         '#339966',
         '#669933',
       ],
-      active: null,
       pickerIcon: `<svg xmlns="http://www.w3.org/2000/svg" width="17.606" height="15.702" viewBox="0 0 17.606 15.702">
         <g transform="translate(-1.059 -2.058)">
           <path d="M1.477,10.225l2.735,2.735c1.92,1.92,2.576,1.889,4.473,0l4.4-4.4c1.533-1.533,1.92-2.553,0-4.473L10.352,1.349C8.3-.7,7.412-.184,5.879,1.349l-4.4,4.4C-.412,7.648-.57,8.178,1.477,10.225Z" transform="translate(1.902 2.623)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
@@ -67,6 +66,11 @@ export default {
   props: ['control'],
   emits: ['input'],
   computed: {
+    active() {
+      return this.colors.findIndex(
+        (c) => c.toUpperCase() === this.control.value.toUpperCase()
+      );
+    },
     color: {
       get() {
         return this.control.value;
@@ -129,6 +133,7 @@ export default {
 }
 .twpx-form-control__picker {
   position: relative;
+  margin-bottom: 8px;
 }
 .twpx-form-control__picker-icon {
   position: absolute;
@@ -141,6 +146,9 @@ export default {
   align-items: center;
   pointer-events: none;
   z-index: 10;
+}
+.twpx-form-control--color .vc-color-wrap {
+  margin-right: 0;
 }
 .twpx-form-control--color .vc-color-wrap.round {
   width: 32px !important;
