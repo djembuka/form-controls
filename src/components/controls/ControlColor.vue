@@ -3,7 +3,6 @@
     :class="{
       'twpx-form-control': true,
       'twpx-form-control--color': true,
-      'twpx-form-control--invalid': invalid,
       'twpx-form-control--disabled': disabled,
     }"
   >
@@ -66,6 +65,9 @@ export default {
   props: ['control'],
   emits: ['input'],
   computed: {
+    disabled() {
+      return this.control.disabled;
+    },
     active() {
       return this.colors.findIndex(
         (c) => c.toUpperCase() === this.control.value.toUpperCase()
@@ -76,14 +78,12 @@ export default {
         return this.control.value;
       },
       set(value) {
-        this.active = null;
         this.$emit('input', { value });
       },
     },
   },
   methods: {
     chooseColor(index) {
-      this.active = index;
       this.$emit('input', { value: this.colors[index] });
     },
   },
