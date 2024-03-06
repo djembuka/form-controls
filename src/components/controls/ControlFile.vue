@@ -407,7 +407,7 @@ export default {
   top: 5px;
   left: 46px;
   font-size: 9px;
-  color: #2b2b2b;
+  color: #2d3142;
   pointer-events: none;
   line-height: 1.1;
   z-index: 10;

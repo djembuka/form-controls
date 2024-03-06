@@ -153,7 +153,7 @@ export default {
   -webkit-transform: translateY(5px);
   transform: translateY(5px);
   font-size: 9px;
-  color: #848c95;
+  color: #2d3142;
 }
 .twpx-form-control--textarea .twpx-form-control__disabled-icon {
   position: absolute;

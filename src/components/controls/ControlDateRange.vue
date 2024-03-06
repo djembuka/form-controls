@@ -13,6 +13,7 @@
       class="twpx-form-control__disabled-icon"
       v-if="disabled"
     />
+    <div class="twpx-form-control__calendar-icon" v-html="calendarIcon"></div>
     <div class="twpx-form-control__label">{{ control.label }}</div>
     <VueDatePicker
       v-model="date"
@@ -42,6 +43,20 @@ export default {
     return {
       start: '',
       hint: this.control.hint_external,
+      calendarIcon: `<svg xmlns="http://www.w3.org/2000/svg" width="15.9" height="17.499" viewBox="0 0 15.9 17.499">
+        <g transform="translate(0.75 0.75)">
+            <path d="M0,0V2.4" transform="translate(4)" fill="none" stroke="#2d3142" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            <path d="M0,0V2.4" transform="translate(10.4)" fill="none" stroke="#2d3142" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            <path d="M0,0H13.6" transform="translate(0.4 5.672)" fill="none" stroke="#2d3142" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            <path d="M14.4,4v6.8c0,2.4-1.2,4-4,4H4c-2.8,0-4-1.6-4-4V4C0,1.6,1.2,0,4,0h6.4C13.2,0,14.4,1.6,14.4,4Z" transform="translate(0 1.199)" fill="none" stroke="#2d3142" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            <path d="M.495.5H.5" transform="translate(9.662 8.859)" fill="none" stroke="#2d3142" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+            <path d="M.495.5H.5" transform="translate(9.662 11.26)" fill="none" stroke="#2d3142" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+            <path d="M.495.5H.5" transform="translate(6.701 8.859)" fill="none" stroke="#2d3142" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+            <path d="M.495.5H.5" transform="translate(6.701 11.26)" fill="none" stroke="#2d3142" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+            <path d="M.495.5H.5" transform="translate(3.74 8.859)" fill="none" stroke="#2d3142" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+            <path d="M.495.5H.5" transform="translate(3.74 11.26)" fill="none" stroke="#2d3142" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        </g>
+      </svg>`,
     };
   },
   props: ['control'],
@@ -122,10 +137,19 @@ export default {
   pointer-events: none;
   z-index: 10;
 }
+.twpx-form-control--date .twpx-form-control__calendar-icon {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  z-index: 10;
+}
 .twpx-form-control--date .twpx-form-control__label {
   position: absolute;
   top: 0;
-  left: 34px;
+  left: 40px;
   margin: 0;
   padding: 0;
   color: #2d3142;
@@ -140,11 +164,10 @@ export default {
   z-index: 100;
 }
 .twpx-form-control--date.twpx-form-control--active .twpx-form-control__label {
-  left: 14px;
   -webkit-transform: translateY(5px);
   transform: translateY(5px);
   font-size: 9px;
-  color: #848c95;
+  color: #2d3142;
 }
 .twpx-form-control--date.twpx-form-control--invalid .twpx-form-control__label {
   color: #ff0000;
@@ -169,6 +192,7 @@ export default {
   outline: none !important;
   box-shadow: none !important;
   box-sizing: border-box;
+  padding-left: 40px;
 }
 .twpx-form-control--date .dp__input:focus,
 .twpx-form-control--date .dp__input:hover {
