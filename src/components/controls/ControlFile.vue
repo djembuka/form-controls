@@ -138,7 +138,7 @@ export default {
     uploadFile(files) {
       this.files = files;
       if (!this.invalidString) {
-        this.$emit('input', { value: files[0] });
+        this.$emit('input', { value: files[0].name, file: files[0] });
       }
     },
     clearInputFile() {
