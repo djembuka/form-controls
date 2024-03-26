@@ -324,6 +324,18 @@ export default createStore({
           hint_external: 'Или короткой',
           dependency: 'id6',
         },
+        {
+          property: 'checkbox',
+          type: 'checkbox',
+          id: 'id9',
+          name: 'SIMPLE_CHECKBOX_2',
+          required: true,
+          label: 'Простой checkbox',
+          value: 'some',
+          checked: true,
+          disabled: false,
+          hint_external: 'Или короткой',
+        },
       ],
     };
   },

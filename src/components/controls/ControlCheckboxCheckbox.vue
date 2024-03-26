@@ -43,7 +43,7 @@ export default {
         return this.control.checked;
       },
       set(checked) {
-        this.$emit('input', checked);
+        this.$emit('input', { checked });
       },
     },
     invalid() {
