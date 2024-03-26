@@ -338,4 +338,13 @@ export default {
 .twpx-form-control--date .dp__action_row {
   display: none;
 }
+
+.twpx-form-control--date .dp__clear_icon {
+  width: 26px;
+  height: 26px;
+  top: 50%;
+}
+.twpx-form-control--date .dp__clear_icon:hover {
+  opacity: 0.7;
+}
 </style>
