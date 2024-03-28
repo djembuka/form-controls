@@ -12,7 +12,7 @@
     <img
       :src="disabled"
       class="twpx-form-control__disabled-icon"
-      v-if="disabled"
+      v-if="false"
     />
     <div class="twpx-form-control__label">{{ control.label }}</div>
     <div class="twpx-form-control__textarea">

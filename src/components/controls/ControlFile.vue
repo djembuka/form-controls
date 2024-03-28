@@ -11,7 +11,7 @@
     <img
       :src="disabled"
       class="twpx-form-control__file__disabled-icon"
-      v-if="disabled"
+      v-if="false"
     />
     <span
       class="twpx-form-control__file__clear"
