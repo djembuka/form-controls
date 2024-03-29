@@ -19,7 +19,11 @@
           :value="control.value"
           v-model="checked"
       /></span>
-      <span class="twpx-form-control__switch-text">{{ control.label }}</span>
+      <span
+        class="twpx-form-control__switch-text"
+        v-if="control.label !== undefined"
+        >{{ control.label }}</span
+      >
     </label>
     <div class="twpx-form-control-hint" v-if="hint" v-html="hint"></div>
   </div>
@@ -91,7 +95,6 @@ export default {
   background-color: #c5eb52;
   position: relative;
   cursor: pointer;
-  margin-right: var(--slr2-gap-middle);
   flex-shrink: 0;
 }
 .twpx-form-control--checkbox
@@ -127,5 +130,6 @@ export default {
 .twpx-form-control--checkbox .twpx-form-control__switch-text {
   line-height: var(--slr2-font-size-sm);
   font-size: var(--slr2-font-size-sm);
+  margin-left: var(--slr2-gap-middle);
 }
 </style>
