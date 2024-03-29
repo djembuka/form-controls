@@ -14,7 +14,7 @@
     >
       <input
         class="with-gap"
-        name="group1"
+        :name="controlName"
         type="radio"
         :value="option.code"
         v-model="checked"
